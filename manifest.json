@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Closed Captions Customizer",
+  "version": "1.0",
+  "description": "Customize closed captions: change font, size, and position.",
+  "permissions": ["storage", "activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_title": "Customize Captions"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

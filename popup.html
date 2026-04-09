@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Caption Customizer</title>
+  <style>
+    body { width: 320px; padding: 14px; font-family: Arial, sans-serif; background: #111; color: #fff; }
+    h3 { margin-bottom: 14px; font-size: 18px; }
+    label { display: block; margin: 10px 0 6px; }
+    select, input[type=range], input[type=color] { width: 100%; }
+    select { padding: 8px; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; }
+    input[type=color] { height: 36px; border: 1px solid #333; border-radius: 6px; padding: 0; }
+    .range-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    input[type=range] { margin-bottom: 12px; }
+    .checkbox-row { display: flex; align-items: center; gap: 8px; margin: 10px 0; }
+    button { margin-top: 10px; width: 100%; padding: 10px; border: none; border-radius: 8px; cursor: pointer; }
+    .primary { background: #ff0000; color: #fff; }
+    .secondary { background: #444; color: #fff; }
+    .info { font-size: 12px; color: #ccc; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h3>Customize Closed Captions</h3>
+  <div class="checkbox-row">
+    <input type="checkbox" id="enabled" checked>
+    <label for="enabled">Enable custom captions</label>
+  </div>
+  <label for="fontFamily">Font Family</label>
+  <select id="fontFamily">
+    <option>Arial</option>
+    <option>Verdana</option>
+    <option>Times New Roman</option>
+    <option>Courier New</option>
+    <option>Georgia</option>
+  </select>
+  <label class="range-label" for="fontSize"><span>Font Size</span><span id="fontSizeValue">16px</span></label>
+  <input id="fontSize" type="range" min="12" max="42" step="2" value="16">
+  <label for="textColor">Text Color</label>
+  <input type="color" id="textColor" value="#ffffff">
+  <label for="textShadow">Text shadow (outline for readability)</label>
+  <select id="textShadow">
+    <option value="none">None</option>
+    <option value="0 0 4px rgba(0,0,0,0.75)">Light outline</option>
+    <option value="0 0 8px rgba(0,0,0,0.85)">Stronger outline</option>
+    <option value="0 0 2px rgba(0,0,0,0.8), 0 0 6px rgba(0,0,0,0.4)">Bold outline</option>
+  </select>
+  <div class="info">Usează o conturare ușoară pentru a face textul mai vizibil peste fundaluri deschise sau detaliate.</div>
+  <label class="range-label" for="backgroundOpacity"><span>Background opacity</span><span id="backgroundOpacityValue">70%</span></label>
+  <input id="backgroundOpacity" type="range" min="0" max="100" step="5" value="70">
+  <div class="checkbox-row">
+    <input type="checkbox" id="saveScope" checked>
+    <label for="saveScope">Save for this channel/playlist if available</label>
+  </div>
+  <div class="info" id="scopeInfo">Scope: global</div>
+  <button class="primary" id="save">Save Settings</button>
+  <button class="secondary" id="restore">Restore defaults</button>
+  <script src="popup.js"></script>
+</body>
+</html>
