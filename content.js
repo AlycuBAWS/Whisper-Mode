@@ -101,8 +101,9 @@ function applyCaptionStyles() {
 
     style.textContent = `
       .ytp-caption-window-container,
-      .ytp-caption-window-container *,
-      .ytp-caption-window-container *::first-line {
+      .ytp-caption-window-container .ytp-caption-segment,
+      .ytp-caption-window-container .ytp-caption-segment span,
+      .ytp-caption-window-container span {
         font-family: ${getCssFontFamily(settings.fontFamily)} !important;
         font-size: ${settings.fontSize} !important;
         color: ${settings.textColor} !important;
@@ -456,9 +457,23 @@ function createCustomizerToggle(ccButton) {
     event.stopPropagation();
     panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
     if (panel.style.display === 'flex') {
-      const rect = ccButton.getBoundingClientRect();
-      panel.style.left = `${Math.min(window.innerWidth - panel.offsetWidth - 10, rect.left)}px`;
-      panel.style.top = `${Math.max(10, rect.top - panel.offsetHeight - 10)}px`;
+      const ccButton = document.querySelector('.ytp-subtitles-button, button[aria-label*="Captions"], button[aria-label*="Subtitrări"], button[aria-label*="Subtitles"]');
+      const playerControls = document.querySelector('.ytp-chrome-bottom');
+
+      if (ccButton && playerControls) {
+        const ccButtonRect = ccButton.getBoundingClientRect();
+        const controlsRect = playerControls.getBoundingClientRect();
+        
+        panel.style.right = `${window.innerWidth - ccButtonRect.right}px`; 
+        panel.style.bottom = `${controlsRect.height + 10}px`; 
+        panel.style.left = 'auto';
+        panel.style.top = 'auto';
+      } else {
+        panel.style.right = '10px';
+        panel.style.bottom = '50px'; 
+        panel.style.left = 'auto';
+        panel.style.top = 'auto';
+      }
     }
   });
 
